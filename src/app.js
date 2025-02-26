@@ -28,20 +28,59 @@ app.get("/user",async(req,res)=>{
     }
 
   }catch(err){
-     res.status(400).send("SOmething went wrong")
+     res.status(400).send("Something went wrong")
   }
 })
 
 app.get("/feed", async (req,res)=>{
   try{
     const users = await User.find({})
-    console.log(users)
     res.send(users)
 
   }catch(err){
     res.status(400).send("Something went wrong")
   }
 })
+
+app.delete("/user",async (req,res)=>{
+  const userId = req.body.userId
+
+  try{
+    const user = await User.findByIdAndDelete(userId)
+  
+    res.send("user delete succesfully")
+
+
+  }catch(err){
+    res.status(400).send("Something went wrong")
+  }
+})
+
+app.patch("/user",async (req,res)=>{
+  const userId = req.body.userId
+  const data = req.body
+
+  try{
+
+    await User.findByIdAndUpdate({_id:userId},data)
+    res.send("user updated successfully")
+
+  }catch(err){
+    res.status(400).send("something went wrong")
+  }
+
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 
