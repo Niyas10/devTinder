@@ -8,6 +8,7 @@ app.use(express.json())
 
 app.post("/signup", async (req, res) => {
   const user = new User(req.body)
+  
   try {
     await user.save();
     res.send("succesfully user added ");
@@ -62,7 +63,10 @@ app.patch("/user",async (req,res)=>{
 
   try{
 
-    await User.findByIdAndUpdate({_id:userId},data)
+    await User.findByIdAndUpdate({_id:userId},data,{
+      returnDocument:"after",
+      runValidators:true
+    })
     res.send("user updated successfully")
 
   }catch(err){
