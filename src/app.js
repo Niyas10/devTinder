@@ -5,7 +5,7 @@ const User = require("./models/user");
 const { validateSignUpData } = require("./utils/validation");
 const bcrypt = require("bcrypt");
 
-app.use(express.json());
+app.use(express.json())
 
 app.post("/signup", async (req, res) => {
   try {
