@@ -12,6 +12,21 @@ const validateSignUpData = (req) =>{
     
 }
 
+const validateProfileData = (req)=>{
+    const allowedEditField = ["firstName","LastName","photoUrl","about","gender","age","skills"];
+
+     if(req.body.photoURl &&!validator.isURL(req.body.photoURl)){
+               throw new Error ("enter valid image url")
+     }
+
+  const isEditAllowed =   Object.keys(req.body).every(field => allowedEditField.includes(field))
+  
+ return isEditAllowed;
+    
+
+}
+
 module.exports = {
     validateSignUpData,
+    validateProfileData
 }
