@@ -8,11 +8,11 @@ app.use(cookieParser());
 
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
-const requestRouer = require("./routes/request");
+const requestRouter = require("./routes/request");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
-app.use("/", requestRouer);
+app.use("/", requestRouter);
 
 connectDb()
   .then(() => {
@@ -24,4 +24,4 @@ connectDb()
   .catch((err) => {
     console.log("Database not connected");
   });
- 
+      
