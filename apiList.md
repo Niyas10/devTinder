@@ -12,8 +12,14 @@
 - PATCH/profile/password
 
 ## connectionRequestRouter
-- GET /user/connections
-- GET /user/requests
-= GET /user/feed  - get you the profiles of others users on platform
+- post  /request/send/:status/:userId
+- post  /request/review/:status/:requestId
+
+
+userROuter 
+
+get/user/connections
+get /user/request
+get/user/feed
 
 status : ignore interest accepts rejectd 
