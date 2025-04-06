@@ -5,10 +5,7 @@ const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
 const user = require("../models/user");
 
-requestRouter.post(
-  "/request/send/:status/:toUserId",
-  userAuth,
-  async (req, res) => {
+requestRouter.post("/request/send/:status/:toUserId",userAuth,async (req, res) => {
     try {
       const fromUserId = req.user._id;
       const toUserId = req.params.toUserId;
@@ -61,10 +58,7 @@ requestRouter.post(
   }
 );
 
-requestRouter.post(
-  "/request/review/:status/:requestId",
-  userAuth,
-  async (req, res) => {
+requestRouter.post("/request/review/:status/:requestId",userAuth,async (req, res) => {
     try {
       const loggedInUser = req.user;
       const { status, requestId } = req.params;
@@ -77,7 +71,7 @@ requestRouter.post(
 
       const connectionRequest = await ConnectionRequest.findOne({
         _id: requestId,
-        toUserId: loggedInUser.id,
+        toUserId: loggedInUser._id,
         status: "interested",
       });
 
