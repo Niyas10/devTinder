@@ -13,6 +13,8 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
   }
 });
 
+
+
 profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
   try {
     if (!validateProfileData(req)) {
@@ -31,6 +33,8 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
     res.status(400).send("error edit the user" + err.message);
   }
 });
+
+
 
 profileRouter.patch("/profile/editPassword",userAuth , async (req,res)=>{
     try{

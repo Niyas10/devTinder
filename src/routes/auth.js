@@ -40,6 +40,9 @@ authRouter.post("/signup", async (req, res) => {
 authRouter.post("/login", async (req, res) => {
   try {
     const { emailId, password } = req.body;
+      
+    console.log(password)
+ 
     const user = await User.findOne({ emailId: emailId });
     if (!user) {
       throw new Error("Invalid Credential");
@@ -53,7 +56,7 @@ authRouter.post("/login", async (req, res) => {
       res.cookie("token", token, {
         expires: new Date(Date.now() + 8 * 3600000),
       });
-      res.send("Login succesfull");
+      res.send(user);
     } else {
       throw new Error("Invalid Credential");
     }
